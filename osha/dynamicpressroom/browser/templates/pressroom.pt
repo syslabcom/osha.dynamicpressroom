@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+        lang="en"
+        metal:use-macro="here/main_template/macros/master"
+        i18n:domain="osha">
+
+    <metal:block fill-slot="javascript_head_slot">
+        <script>
+            var jq = jQuery.noConflict();
+            jq(document).ready(function(){
+                jq("td.big-target a").bigTarget({
+                    clickZone : 'td:eq(0)',// jQuery parent selector
+                    hoverClass: 'hover' // CSS class applied to the click zone onHover
+                });
+            });
+        </script>
+    </metal:block>
+
+<body>
+    <div metal:fill-slot="main" id="PressRoom"
+        tal:define="context view/getContext">
+        <h1 class="documentFirstHeading"
+            tal:content="here/Title">
+        </h1>
+        <div tal:condition="python:here.portal_membership.checkPermission('Modify portal content', context)">
+            <a tal:attributes="href string:${context/absolute_url}/edit#fieldsetlegend-aggregation">
+                Click here to configure this Press Room
+                <br clear="all"/>
+            </a>
+        </div>
+        <div id="pressroom-boxes">
+            <table id="pressroom-boxes-table">
+                <tr>
+                    <td class="big-target pressbox-pr-off"
+                        onmouseover='jq(this).addClass("pressbox-pr-on");jq(this).removeClass("pressbox-pr-off");'
+                        onmouseout='jq(this).removeClass("pressbox-pr-on");jq(this).addClass("pressbox-pr-off");'>
+                        <a href="dynamicpressroom-releases" i18n:translate="osha_label_pressbox_pressreleases">Press Releases</a>
+                    </td>
+                    <td class="big-target pressbox-articles-off"
+                        onmouseover='jq(this).addClass("pressbox-articles-on");jq(this).removeClass("pressbox-articles-off");'
+                        onmouseout='jq(this).removeClass("pressbox-articles-on");jq(this).addClass("pressbox-articles-off");'>
+                        <a href="dynamicpressroom-articles" i18n:translate="osha_label_pressbox_articles">Articles and<br> Interviews</a>
+                    </td>
+                    <td class="big-target pressbox-photos-off"
+                        onmouseover='jq(this).addClass("pressbox-photos-on");jq(this).removeClass("pressbox-photos-off");'
+                        onmouseout='jq(this).removeClass("pressbox-photos-on");jq(this).addClass("pressbox-photos-off");'>
+                        <a href="dynamicpressroom-audiovisual" i18n:translate="osha_label_pressbox_photos">Images and Audiovisual</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div tal:condition="view/get_feed">
+        <div id="EuMediaCoverage">
+            <h1 class="boxTitle" i18n:translate="osha_label_eu_media_coverage">EU media coverage</h1>
+        </div>
+
+        <div id="boxBody">
+            <tal:block repeat="row view/get_feed">
+            <h3><a tal:attributes="href row/link" tal:content="structure row/title">title</a></h3>
+            <p>
+                <span tal:condition="python:row.get('date') or nothing" tal:omit-tag="">
+                    <i tal:content="structure python: here.toLocalizedTime(row['date'])"></i>
+                </span>
+                <span tal:replace="structure row/description">Welt</span>
+                </p>
+            </tal:block>
+            <div id="more-syndicated-news">
+                <a href="sinList?synmap=meltwater" i18n:translate="box_more" i18n:domain="plone">More...</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="addresses">
+    <table class="Tabelle">
+        <tr>
+        <td tal:repeat="contact view/get_press_contacts">
+            <div>
+                <strong tal:content="contact/Description">International press:</strong><br>
+                <span tal:content="contact/Title"/>,<br/>
+                <tal:info content="contact/getJobtitle"/><br/><br/>
+                <tal:info content="contact/getOrganization"/><br/>
+                <tal:info content="contact/getCity"/>, <span tal:replace="contact/getStateOrProvince" /><br/>
+                <tal:if condition="contact/getPhone">
+                   Tel: <span tal:replace="contact/getPhone" /><br/>
+                </tal:if>
+                <tal:if condition="contact/getCellphone">
+                    Mobile: <span tal:replace="contact/getCellphone" /><br/>
+                </tal:if>
+                <tal:if condition="contact/getEmail">
+                    <a tal:attributes="href string:mailto:${contact/getEmail}" tal:content="contact/getEmail"/>
+                </tal:if>
+            </div>
+        </td>
+        </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,52 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="osha.dynamicpressroom">
+
+    <browser:resource
+            file="dynamicpressroom.css"
+            name="dynamicpressroom.css"
+            />
+
+    <browser:resource
+            file="images/pressbox_dark_off.gif"
+            name="pressbox_dark_off.gif"
+            />
+
+    <browser:resource
+            file="images/pressbox_dark_on.gif"
+            name="pressbox_dark_on.gif"
+            />
+
+    <browser:resource
+            file="images/pressbox_light_off.gif"
+            name="pressbox_light_off.gif"
+            />
+
+    <browser:resource
+            file="images/pressbox_light_on.gif"
+            name="pressbox_light_on.gif"
+            />
+
+    <browser:resource
+            file="images/pressbox_medium_off.gif"
+            name="pressbox_medium_off.gif"
+            />
+
+    <browser:resource
+            file="images/pressbox_medium_on.gif"
+            name="pressbox_medium_on.gif"
+            />
+
+    <browser:resource
+            file="images/press_releases.gif"
+            name="press_releases.gif"
+            />
+
+    <browser:resource
+            file="images/press_room_boxes.gif"
+            name="press_room_boxes.gif"
+            />
+
+</configure>

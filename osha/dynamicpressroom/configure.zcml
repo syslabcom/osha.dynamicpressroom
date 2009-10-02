@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="osha.dynamicpressroom">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="osha.dynamicpressroom"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        description="Installs osha.dynamicpressroom"
+        />
+
+    <genericsetup:importStep
+        name="osha.dynamicpressroom-install-dependencies"
+        title="osha.dynamicpressroom install dependencies"
+        description="Installs product dependencies for osha.dynamicpressroom"
+        handler=".setuphandlers.install_dependencies"
+        />
+
+    <include package="archetypes.schemaextender" />
+    <include package="p4a.common" />
+    <include package="p4a.subtyper" />
+    <include package="p4a.z2utils" />
+
+    <include package=".browser" />
+
+    <!-- Descriptors (For Subtypes) -->
+    <utility name="osha.dynamicpressroom.dynamicpressroom"
+             factory=".descriptors.DynamicPressRoomDescriptor"
+             />
+
+    <!-- Vocabularies  -->
+    <utility
+        component=".vocabulary.SinToolKeyVocabulary"
+        name="osha.dynamicpressroom.SinToolKeyVocabulary"
+        /> 
+
+    <!-- Schema Extenders  -->
+    <adapter
+        name="osha.dynamicpressroom.pressroom"
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
+        factory=".extensions.DynamicPressRoom" 
+        />
+
+</configure>

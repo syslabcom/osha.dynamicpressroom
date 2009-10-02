@@ -1,0 +1,86 @@
+#PressRoom h1.header {
+    font-size:120%;
+    background-color:#c5cbd8;
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-top:0px;
+    margin-bottom:40px;
+}
+
+#PressRoom #addresses div
+{
+	clear:right;
+    background-color:#c5cbd8;
+    margin:30px 3% 0px 3%;
+    padding: 5px;
+}
+
+* html #PressRoom #addresses div {
+	margin-left:0px;
+}
+
+#PressRoom #addresses #firstAdress {
+	margin-left:0px;
+}
+
+#PressRoom #addresses #lastAdress {
+	margin-right:0px;
+	clear:both;
+}
+
+#pressroom-boxes  {
+		width:570px;
+    margin:auto;
+}
+
+#pressroom-boxes a {
+    color: black;
+}
+
+#pressroom-boxes-table  {
+    font-size: 120%;
+    font-weight: bold;
+    vertical-align: middle;
+    margin-bottom:2em;
+}
+
+#pressroom-boxes-table  td {
+    width: 180px;
+    height: 80px;
+    text-align: center;
+}
+
+#pressroom-boxes-table a{
+  padding:0.5em;
+  display:block;
+}
+.pressbox-pr-off {                  background: url(++resource++pressbox_light_off.gif) no-repeat; }
+.pressbox-pr-off div {              position:relative;right: 4px;bottom: 4px;}
+.pressbox-pr-on {                   background: url(++resource++pressbox_light_on.gif) no-repeat;}
+.pressbox-pr-on div {               position:relative;right: 0px;bottom: 0px;}
+
+.pressbox-campaigns-off {           background: url(++resource++pressbox_medium_off.gif) no-repeat; }
+.pressbox-campaigns-off div {       position:relative;right: 4px;bottom: 4px;}
+.pressbox-campaigns-on {            background: url(++resource++pressbox_medium_on.gif) no-repeat;}
+.pressbox-campaigns-on div {        position:relative;right: 0px;bottom: 0px;}
+
+.pressbox-photos-off {              background: url(++resource++pressbox_dark_off.gif) no-repeat; }
+.pressbox-photos-off div {          position:relative;right: 4px;bottom: 4px;}
+.pressbox-photos-on {               background: url(++resource++pressbox_dark_on.gif) no-repeat;}
+.pressbox-photos-on div {           position:relative;right: 0px;bottom: 0px;}
+
+.pressbox-articles-off {            background: url(++resource++pressbox_light_off.gif) no-repeat; }
+.pressbox-articles-off div {        position:relative;right: 4px;bottom: 4px;}
+.pressbox-articles-on {             background: url(++resource++pressbox_light_on.gif) no-repeat;}
+.pressbox-articles-on div {         position:relative;right: 0px;bottom: 0px;}
+
+.pressbox-about-off {               background: url(++resource++pressbox_medium_off.gif) no-repeat; }
+.pressbox-about-off div {           position:relative;right: 4px;bottom: 4px;}
+.pressbox-about-on {                background: url(++resource++pressbox_medium_on.gif) no-repeat;}
+.pressbox-about-on div {            position:relative;right: 0px;bottom: 0px;}
+
+.pressbox-publications-off {        background: url(++resource++pressbox_dark_off.gif) no-repeat; }
+.pressbox-publications-off div {    position:relative;right: 4px;bottom: 4px;}
+.pressbox-publications-on {         background: url(++resource++pressbox_dark_on.gif) no-repeat;}
+.pressbox-publications-on div {     position:relative;right: 0px;bottom: 0px;}

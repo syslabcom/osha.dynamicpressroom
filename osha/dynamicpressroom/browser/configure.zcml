@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="osha.dynamicpressroom">
+
+    <include package=".resources" />
+
+    <browser:page 
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
+        class=".pressroom.PressRoom"
+        name="pressroom_view"
+        permission="zope2.View"
+        template="templates/pressroom.pt" 
+        />
+
+    <browser:page
+        for="*"
+        name="dynamicpressroom-releases"
+        class=".pressroom.PressRoom"
+        permission="zope.Public"
+        allowed_interface=".interfaces.IPressRoomView"
+        template="templates/press_releases.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="dynamicpressroom-articles"
+        class=".pressroom.PressRoom"
+        permission="zope.Public"
+        allowed_interface=".interfaces.IPressRoomView"
+        template="templates/press_articles.pt"
+        />
+
+    <browser:page
+        for="*"
+        name="dynamicpressroom-audiovisual"
+        class=".pressroom.PressRoom"
+        permission="zope.Public"
+        allowed_interface=".interfaces.IPressRoomView"
+        template="templates/press_audiovisual.pt"
+        />
+
+</configure>
+
