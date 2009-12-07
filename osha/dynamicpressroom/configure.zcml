@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="osha.dynamicpressroom">
 
@@ -26,9 +27,15 @@
 
     <include package=".browser" />
 
+    <cmf:registerDirectory name="osha_dynamicpressroom_images"/>
+
     <!-- Descriptors (For Subtypes) -->
     <utility name="osha.dynamicpressroom.dynamicpressroom"
              factory=".descriptors.DynamicPressRoomDescriptor"
+             />
+
+    <utility name="osha.dynamicpressroom.dynamicpressroomfolder"
+             factory=".descriptors.DynamicPressRoomFolderDescriptor"
              />
 
     <!-- Vocabularies  -->
