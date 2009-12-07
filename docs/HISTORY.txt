@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.1 - (2009-12-07)
+------------------
+
+∗ Let Folders also be subtyped. [jcbrand]
+* Hide the links and add help text when a global pressroom has not yet been
+configured [jcbrand]
+* Show a 1x1 pixel transparent image when the item in the audiovisual section
+does not have a preview image [jcbrand]
+
 1.0 - (2009-10-08)
 ------------------
 

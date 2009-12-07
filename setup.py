@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0'
+version = '1.1'
 
 setup(name='osha.dynamicpressroom',
       version=version,
@@ -27,7 +27,6 @@ setup(name='osha.dynamicpressroom',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
       ],
       entry_points="""
       # -*- Entry points: -*-
