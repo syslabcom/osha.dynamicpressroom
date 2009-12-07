@@ -22,6 +22,15 @@
             tal:content="here/Title">
         </h1>
         <div tal:condition="python:here.portal_membership.checkPermission('Modify portal content', context)">
+            <tal:if condition="not:view/has_global_pressroom">
+                <h3>Important:</h3>
+                <p>
+                    This folder has now been turned into a dynamic pressroom, but
+                    it is not yet configured. Specifically, you need to add a
+                    global pressroom from which the press releases, articles and
+                    other content will be sourced. 
+                </p>
+            </tal:if>
             <a tal:attributes="href string:${context/absolute_url}/edit#fieldsetlegend-aggregation">
                 Click here to configure this Press Room
                 <br clear="all"/>
@@ -31,16 +40,19 @@
             <table id="pressroom-boxes-table">
                 <tr>
                     <td class="big-target pressbox-pr-off"
+                        tal:condition="view/has_global_pressroom"
                         onmouseover='jq(this).addClass("pressbox-pr-on");jq(this).removeClass("pressbox-pr-off");'
                         onmouseout='jq(this).removeClass("pressbox-pr-on");jq(this).addClass("pressbox-pr-off");'>
                         <a href="dynamicpressroom-releases" i18n:translate="osha_label_pressbox_pressreleases">Press Releases</a>
                     </td>
                     <td class="big-target pressbox-articles-off"
+                        tal:condition="view/has_global_pressroom"
                         onmouseover='jq(this).addClass("pressbox-articles-on");jq(this).removeClass("pressbox-articles-off");'
                         onmouseout='jq(this).removeClass("pressbox-articles-on");jq(this).addClass("pressbox-articles-off");'>
                         <a href="dynamicpressroom-articles" i18n:translate="osha_label_pressbox_articles">Articles and<br> Interviews</a>
                     </td>
                     <td class="big-target pressbox-photos-off"
+                        tal:condition="view/has_global_pressroom"
                         onmouseover='jq(this).addClass("pressbox-photos-on");jq(this).removeClass("pressbox-photos-off");'
                         onmouseout='jq(this).removeClass("pressbox-photos-on");jq(this).addClass("pressbox-photos-off");'>
                         <a href="dynamicpressroom-audiovisual" i18n:translate="osha_label_pressbox_photos">Images and Audiovisual</a>
