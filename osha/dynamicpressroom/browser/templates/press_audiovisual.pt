@@ -62,7 +62,8 @@
                     <p tal:content="item_description">
                         Item Desc
                     </p>
-                    <img tal:attributes="src string:${item_url}/image_preview"/>
+                    <img tal:attributes="src string:${item_url}/image_preview"
+                         onerror="this.src='no_image.gif'"/>
                     <br />
                     <br />
                 </dt>
