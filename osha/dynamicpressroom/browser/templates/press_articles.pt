@@ -35,7 +35,6 @@
     </metal:fill>
 
     <div metal:fill-slot="main" id="PressRoom">
-
         <div tal:replace="structure provider:plone.abovecontentbody" />
         <dl>
             <tal:batch define="Batch python:modules['Products.CMFPlone'].Batch;
@@ -79,10 +78,9 @@
                                     item_email item/getEmail|nothing;
                                     item_phone item/getPhone|nothing;
                                     item_cellphone item/getCellphone|nothing;
-                                ">
+                                    ">
 
                 <dt metal:define-macro="listitem">
-
                     <span tal:attributes="class item_type_class">
                         <a href="#" 
                             tal:attributes="href string:${item_url}/view;
@@ -91,43 +89,39 @@
                             Item Title
                         </a>
                     </span>
-
-
-                        <div class="itemDate"
-                                tal:condition="item_storydate"
-                                tal:content="python: context.toLocalizedTime(item_storydate)">
-                                [Story date]
-                        </div>
-                        
-                        <div class="itemLocation"
-                                tal:condition="item_location"
-                                tal:content="item_location">
-                            [Location]
-                        </div>
-                        
-                        <div class="itemPublication"
-                                tal:condition="item_publication"
-                                tal:content="item_publication">
-                                [Publication]
-                        </div>
-
-
+                    <div class="itemDate"
+                            tal:condition="item_storydate"
+                            tal:content="python: context.toLocalizedTime(item_storydate)">
+                            [Story date]
+                    </div>
+                    <div class="itemLocation"
+                            tal:condition="item_location"
+                            tal:content="item_location">
+                        [Location]
+                    </div>
+                    <div class="itemPublication"
+                            tal:condition="item_publication"
+                            tal:content="item_publication">
+                            [Publication]
+                    </div>
                 </dt>
-
                 <dd>
-
-                    
                     <div class='documentByLine'
-                            tal:condition="python:item_jobtitle or item_organization">
-                                <span tal:condition="item_jobtitle" tal:content='python:item_jobtitle'></span><span tal:condition="python:item_jobtitle and item_organization" tal:content='string:, '></span><span tal:condition="item_organization" tal:content='item_organization'></span>
+                         tal:condition="python:item_jobtitle or item_organization">
+                        <span tal:condition="item_jobtitle" tal:content='python:item_jobtitle'></span>
+                        <span tal:condition="python:item_jobtitle and item_organization" tal:content='string:, '></span>
+                        <span tal:condition="item_organization" tal:content='item_organization'></span>
                     </div>
                     <div class='documentByLine'
-                            tal:condition="python:item_city or item_stateOrProvince">
-                                <span tal:condition="item_city" tal:content='item_city'></span><span tal:condition="python:item_city and item_stateOrProvince" tal:content='string:, '></span><span tal:condition="item_stateOrProvince" tal:content='item_stateOrProvince'></span>
+                         tal:condition="python:item_city or item_stateOrProvince">
+                        <span tal:condition="item_city" tal:content='item_city'></span>
+                        <span tal:condition="python:item_city and item_stateOrProvince" tal:content='string:, '>
+                        </span><span tal:condition="item_stateOrProvince" tal:content='item_stateOrProvince'></span>
                     </div>
                     <div class='documentByLine'
-                            tal:condition="item_email"
-                            ><a tal:replace="structure python: here.spamProtect(item_email)">[Spam-protected email]</a></div>
+                         tal:condition="item_email">
+                         <a tal:replace="structure python: here.spamProtect(item_email)">[Spam-protected email]</a>
+                    </div>
                     <div class='documentByLine'
                             tal:condition="item_phone">
                             <span i18n:translate="label_phone">Phone:</span>
@@ -138,7 +132,6 @@
                             <span i18n:translate="label_cellphone">Cellphone:</span>
                             <span tal:content="item_cellphone">[Cellphone]</span>
                     </div>
-                
                     <span tal:omit-tag="" tal:condition="python: not (item_description or item_subhead)"> 
                         &nbsp; 
                     </span>                        

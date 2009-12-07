@@ -1,6 +1,7 @@
 from zope.interface import implements
 
 from Products.Archetypes import atapi
+from Products.Archetypes.utils import shasattr
 from Products.ATReferenceBrowserWidget.ATReferenceBrowserWidget import ReferenceBrowserWidget
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFCore import permissions
@@ -18,11 +19,17 @@ class ExtendedReferenceField(ExtensionField, atapi.ReferenceField):
     def get(self, instance, **kwargs):
         canonical = instance.getCanonical()
         canonical_refs = atapi.ReferenceField.get(self, canonical, **kwargs)
+        if not canonical_refs:
+            return canonical_refs
+
         portal_languages = getToolByName(instance, 'portal_languages')
         preflang = portal_languages.getPreferredLanguage()
         if not self.multiValued:
             o = canonical_refs
-            return o.getTranslation(preflang) or o.getCanonical()
+            if shasattr(o, 'getTranslation'):
+                return o.getTranslation(preflang) or o.getCanonical()
+            else: 
+                return o.getCanonical()
 
         return [o.getTranslation(preflang) or o.getCanonical() for o in canonical_refs]
 
@@ -44,8 +51,8 @@ class DynamicPressRoom(object):
                 schemata='aggregation',
                 widget = ReferenceBrowserWidget(
                     label = _(u'label_global_pressroom', 
-                            default=u'Reference to the global Press Rooms'),
-                    description=_(u"The global pressrooms' press releases, "
+                            default=u'Reference to the global Press Room'),
+                    description=_(u"The global pressroom's press releases, "
                                 "articles, contacts and other data will be "
                                 "presented in this pressroom as well."),
                     allow_search = True,
