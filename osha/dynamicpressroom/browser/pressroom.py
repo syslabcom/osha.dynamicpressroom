@@ -39,6 +39,12 @@ class PressRoom(BrowserView):
             rows += sin.sin(k, max_size=2)        
         return rows        
 
+    def has_global_pressroom(self):
+        context = self.getContext()
+        if context.Schema().getField('globalPressRoom').get(context):
+            return True
+        return False
+
     #@ram.cache(_render_cachekey)
     def get_press_contacts(self):
         context = self.getContext()
