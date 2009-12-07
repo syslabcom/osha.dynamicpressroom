@@ -13,9 +13,17 @@
         permission="zope2.View"
         template="templates/pressroom.pt" 
         />
+        
+    <browser:menuItem
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
+        menu="plone_displayviews"
+        title="Dynamic Pressroom"
+        action="@@pressroom_view"
+        description="Shows pressroom content from another global pressroom."
+        />
 
     <browser:page
-        for="*"
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
         name="dynamicpressroom-releases"
         class=".pressroom.PressRoom"
         permission="zope.Public"
@@ -24,7 +32,7 @@
         />
 
     <browser:page
-        for="*"
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
         name="dynamicpressroom-articles"
         class=".pressroom.PressRoom"
         permission="zope.Public"
@@ -33,7 +41,7 @@
         />
 
     <browser:page
-        for="*"
+        for="osha.dynamicpressroom.interfaces.IPressRoom"
         name="dynamicpressroom-audiovisual"
         class=".pressroom.PressRoom"
         permission="zope.Public"
