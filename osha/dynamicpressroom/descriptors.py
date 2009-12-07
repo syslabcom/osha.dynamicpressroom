@@ -12,3 +12,13 @@ class DynamicPressRoomDescriptor(object):
     for_portal_type = 'PressRoom'
 
 
+class DynamicPressRoomFolderDescriptor(object):
+    """ A Dynamic PressRoom descriptor for the PressRoom subtype.
+    """
+    interface.implements(IPortalTypedFolderishDescriptor)
+    title = u'Dynamic Press Room'
+    description = u''
+    type_interface = interfaces.IPressRoom
+    for_portal_type = 'Folder'
+
+
