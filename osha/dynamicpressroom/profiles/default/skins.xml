@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+    <object name="portal_skins" 
+            allow_any="False" 
+            cookie_persistence="False"
+            default_skin="osha.dynamicpressroom">
+
+    <object name="osha_dynamicpressroom_images"
+        meta_type="Filesystem Directory View"
+        directory="osha.dynamicpressroom:skins/osha_dynamicpressroom_images"/>
+
+    <skin-path name="osha.dynamicpressroom" based-on="OSHA Plone Theme">
+        <layer name="osha_dynamicpressroom_images"
+            insert-after="osha_theme_scripts"/>    
+    </skin-path>
+</object>
