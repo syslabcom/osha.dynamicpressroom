@@ -53,6 +53,9 @@
                                    item_modified item/ModificationDate;
                                    item_created item/CreationDate;
                                    item_icon python:plone_view.getIcon(item);
+				   normalizeString nocall:context/@@plone/normalizeString;
+				   toLocalizedTime nocall:context/@@plone/toLocalizedTime;
+				   wtool context/portal_workflow;
                                    item_type_class python:'contenttype-' + normalizeString(item_type);
                                    item_wf_state item/review_state|python: wtool.getInfoFor(item, 'review_state', '');
                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);
