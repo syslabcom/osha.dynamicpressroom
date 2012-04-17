@@ -33,7 +33,10 @@ class PressRoom(BrowserView):
     def get_feed(self):
         context = self.getContext()
         keys = context.Schema().getField('RSSKeys').get(context)
-        sin = getToolByName(context, 'sin_tool')
+        try:
+            sin = getToolByName(context, 'sin_tool')
+        except AttributeError:
+            return []
         rows = []
         for k in keys:
             rows += sin.sin(k, max_size=2)        
@@ -53,7 +56,10 @@ class PressRoom(BrowserView):
     def get_press_subfolder(self, folder):
         context = self.getContext()
         field = context.Schema().getField('globalPressRoom')
-        return field.get(context)._getOb(folder)
+        if field.get(context):
+            return field.get(context)._getOb(folder)
+        else:
+            return None
     
     def get_press_releases(self):
         context = self.getContext()
