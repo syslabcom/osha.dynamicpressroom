@@ -2,6 +2,7 @@ from zope import interface
 from p4a.subtyper.interfaces import IPortalTypedFolderishDescriptor
 from osha.dynamicpressroom import interfaces
 
+
 class DynamicPressRoomDescriptor(object):
     """ A Dynamic PressRoom descriptor for the PressRoom subtype.
     """
@@ -20,5 +21,3 @@ class DynamicPressRoomFolderDescriptor(object):
     description = u''
     type_interface = interfaces.IPressRoom
     for_portal_type = 'Folder'
-
-

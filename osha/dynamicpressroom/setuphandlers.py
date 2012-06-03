@@ -5,8 +5,10 @@ from config import PRODUCT_DEPENDENCIES
 
 log = logging.getLogger('osha.dynamicpressroom.setuphandlers.py')
 
+
 def is_not_dynamicpressroom_profile(self):
     return self.readDataFile('osha_dynamicpressroom_marker.txt') is None
+
 
 def install_dependencies(self):
     """ Install product dependencies

@@ -111,9 +111,3 @@ Now we set the the Press Contacts from the global pressroom:
     >>> field_pressContacts.get(local_press)
      [<PressContact at .../global-press-contact1>, <PressContact at .../global-press-contact2>]
 
-
-
-
-
-
-

@@ -7,9 +7,10 @@ from zope.app.component.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 
+
 class SinToolKeyVocabulary(object):
-    """Vocabulary factory returning all available keys in CMFSin's 
-       sin_tool.
+    """Vocabulary factory returning all available keys in CMFSin's
+    sin_tool.
     """
     implements(IVocabularyFactory)
 
@@ -24,4 +25,3 @@ class SinToolKeyVocabulary(object):
         return SimpleVocabulary(items)
 
 SinToolKeyVocabulary = SinToolKeyVocabulary()
-

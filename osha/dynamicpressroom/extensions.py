@@ -10,8 +10,10 @@ from Products.CMFCore.utils import getToolByName
 from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 from archetypes.schemaextender.field import ExtensionField
 
+
 class ExtendedLinesField(ExtensionField, atapi.LinesField):
     """ """
+
 
 class ExtendedReferenceField(ExtensionField, atapi.ReferenceField):
     """ """
@@ -28,10 +30,11 @@ class ExtendedReferenceField(ExtensionField, atapi.ReferenceField):
             o = canonical_refs
             if shasattr(o, 'getTranslation'):
                 return o.getTranslation(preflang) or o.getCanonical()
-            else: 
+            else:
                 return o.getCanonical()
 
-        return [o.getTranslation(preflang) or o.getCanonical() for o in canonical_refs]
+        return [o.getTranslation(preflang) or o.getCanonical()
+                for o in canonical_refs]
 
 
 class DynamicPressRoom(object):
@@ -40,74 +43,74 @@ class DynamicPressRoom(object):
 
     _fields = [
             ExtendedReferenceField('globalPressRoom',
-                allowed_types = ('PressRoom',),
-                relationship = 'aggregatesFrom',
-                multiValued = False,
-                isMetadata = True,
-                languageIndependent = True,
+                allowed_types=('PressRoom',),
+                relationship='aggregatesFrom',
+                multiValued=False,
+                isMetadata=True,
+                languageIndependent=True,
                 accessor='getGlobalPressRoom',
                 mutator='setGlobalPressRoom',
-                write_permission = permissions.ModifyPortalContent,
+                write_permission=permissions.ModifyPortalContent,
                 schemata='aggregation',
-                widget = ReferenceBrowserWidget(
-                    label = _(u'label_global_pressroom', 
+                widget=ReferenceBrowserWidget(
+                    label=_(u'label_global_pressroom',
                             default=u'Reference to the global Press Room'),
                     description=_(u"The global pressroom's press releases, "
                                 "articles, contacts and other data will be "
                                 "presented in this pressroom as well."),
-                    allow_search = True,
-                    allow_browse = True,
-                    show_indexes = False,
-                    force_close_on_insert = True,
-                    visible = {'edit' : 'visible', 'view' : 'invisible' },
+                    allow_search=True,
+                    allow_browse=True,
+                    show_indexes=False,
+                    force_close_on_insert=True,
+                    visible={'edit': 'visible', 'view': 'invisible' },
                 ),
             ),
             ExtendedLinesField('RSSKeys',
-                languageIndependent = True,
+                languageIndependent=True,
                 accessor='getRSSFeed',
                 mutator='setRSSFeed',
                 vocabulary_factory='osha.dynamicpressroom.SinToolKeyVocabulary',
                 schemata='aggregation',
-                widget = atapi.InAndOutWidget(
-                    label = _(u'label_rss_feed', default=u'RSS Feed'),
+                widget=atapi.InAndOutWidget(
+                    label=_(u'label_rss_feed', default=u'RSS Feed'),
                     description=_(
                         u"Choose the RSS profile for this PressRoom. "
                         "Profiles are created in the site control panel."
                         ),
-                    visible = {'edit' : 'visible', 'view' : 'invisible' }
+                    visible={'edit' : 'visible', 'view' : 'invisible' }
                 ),
             ),
             ExtendedReferenceField('pressContacts',
-                allowed_types = ('PressContact',),
-                relationship = 'relatesTo',
-                multiValued = True,
-                isMetadata = True,
-                languageIndependent = True,
+                allowed_types=('PressContact',),
+                relationship='relatesTo',
+                multiValued=True,
+                isMetadata=True,
+                languageIndependent=True,
                 accessor='getPressContacts',
                 mutator='setPressContacts',
-                write_permission = permissions.ModifyPortalContent,
+                write_permission=permissions.ModifyPortalContent,
                 schemata='aggregation',
-                widget = ReferenceBrowserWidget(
-                    label = _(u'label_pess_contacts', 
+                widget=ReferenceBrowserWidget(
+                    label=_(u'label_pess_contacts',
                             default=u'Reference to the Press Contacts'),
                     description=u'',
-                    allow_search = True,
-                    allow_browse = True,
-                    show_indexes = False,
-                    force_close_on_insert = True,
-                    visible = {'edit' : 'visible', 'view' : 'invisible' }
+                    allow_search=True,
+                    allow_browse=True,
+                    show_indexes=False,
+                    force_close_on_insert=True,
+                    visible={'edit' : 'visible', 'view' : 'invisible' }
                 ),
             ),
             ExtendedLinesField('filteringKeywords',
                 languageIndependent=True,
                 accessor='getAuthor',
-                mutator='setAuthor',   
+                mutator='setAuthor',
                 schemata='aggregation',
                 widget=atapi.LinesWidget(
-                    label = _(u'label_filtering_keywords', 
+                    label=_(u'label_filtering_keywords',
                             default=u'Filtering Keywords'),
                     description=_(
-                        u'description_filtering_keywords', 
+                        u'description_filtering_keywords',
                         default=u'Add your keywords here, separate them with spaces.'
                     ),
                 ),
@@ -130,5 +133,3 @@ class DynamicPressRoom(object):
         aggregation.insert(2, 'filteringKeywords')
         original['aggregation'] = aggregation
         return original
-        
-

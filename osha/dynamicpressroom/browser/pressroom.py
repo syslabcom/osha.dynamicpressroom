@@ -9,6 +9,7 @@ from Products.Five import BrowserView
 
 from osha.dynamicpressroom.browser.interfaces import IPressRoomView
 
+
 class PressRoom(BrowserView):
     implements(IPressRoomView)
 
@@ -16,7 +17,7 @@ class PressRoom(BrowserView):
         self.context = context
         self.request = request
         self.result = []
-    
+
     def _render_cachekey(method, self):
         return ('meltwater')
 
@@ -28,7 +29,7 @@ class PressRoom(BrowserView):
         if hasattr(context, 'isCanonical') and not context.isCanonical():
             context = context.getCanonical()
         return context
-    
+
     #@ram.cache(_render_cachekey)
     def get_feed(self):
         context = self.getContext()
@@ -39,8 +40,8 @@ class PressRoom(BrowserView):
             return []
         rows = []
         for k in keys:
-            rows += sin.sin(k, max_size=2)        
-        return rows        
+            rows += sin.sin(k, max_size=2)
+        return rows
 
     def has_global_pressroom(self):
         context = self.getContext()
@@ -60,17 +61,18 @@ class PressRoom(BrowserView):
             return field.get(context)._getOb(folder)
         else:
             return None
-    
+
     def get_press_releases(self):
         context = self.getContext()
         cat = getToolByName(context, 'portal_catalog')
         sf = self.get_press_subfolder('press-releases')
         path = '/'.join(sf.getPhysicalPath())
-        q = {'portal_type': 'PressRelease', 
-             'path': path,
-             'sort_on': 'Date',
-             'sort_order': 'reverse',
-            }
+        q = {
+            'portal_type': 'PressRelease',
+            'path': path,
+            'sort_on': 'Date',
+            'sort_order': 'reverse',
+        }
         keywords = context.Schema().getField('filteringKeywords').get(context)
         if keywords:
             q['Subject'] = keywords
@@ -81,9 +83,11 @@ class PressRoom(BrowserView):
         cat = getToolByName(context, 'portal_catalog')
         sf = self.get_press_subfolder('articles')
         path = '/'.join(sf.getPhysicalPath())
-        q = { 'path': path, 
-              'sort_on': 'effective',
-              'sort_order': 'reverse',}
+        q = {
+            'path': path,
+            'sort_on': 'effective',
+            'sort_order': 'reverse',
+        }
         keywords = context.Schema().getField('filteringKeywords').get(context)
         if keywords:
             q['Subject'] = keywords
@@ -95,10 +99,9 @@ class PressRoom(BrowserView):
         cat = getToolByName(context, 'portal_catalog')
         sf = self.get_press_subfolder('photos')
         path = '/'.join(sf.getPhysicalPath())
-        q = { 'path': path, }
+        q = {'path': path}
         keywords = context.Schema().getField('filteringKeywords').get(context)
         if keywords:
             q['Subject'] = keywords
 
         return [r for r in cat(q) if r.UID != sf.UID()]
-

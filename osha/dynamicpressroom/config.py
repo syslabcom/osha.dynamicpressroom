@@ -1,4 +1,4 @@
 PRODUCT_DEPENDENCIES = [
-            'CMFSin', 
-            'PressRoom',
-            ]
+    'CMFSin',
+    'PressRoom',
+]

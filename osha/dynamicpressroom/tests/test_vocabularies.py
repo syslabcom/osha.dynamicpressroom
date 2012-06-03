@@ -1,7 +1,8 @@
 from zope.component import getUtility
-from zope.schema.interfaces import IVocabularyFactory 
+from zope.schema.interfaces import IVocabularyFactory
 
 from osha.dynamicpressroom.tests.base import ZentraliseTestCase
+
 
 class TestVocabularies(ZentraliseTestCase):
 
@@ -13,14 +14,15 @@ class TestVocabularies(ZentraliseTestCase):
         folder.invokeFactory('PressContact', 'mike-morriss')
 
     def testSinToolKeysVocabulary(self):
-        vocab = getUtility(IVocabularyFactory, name="osha.dynamicpressroom.SinToolKeyVocabulary")
+        vocab = getUtility(IVocabularyFactory,
+                           name="osha.dynamicpressroom.SinToolKeyVocabulary")
         terms = [t.value for t in vocab(self.portal)._terms]
         rss_terms = [
-                'cmsinfo', 'freshmeat', 'oscom', 
-                'pypi', 'pyware', 'slashdot', 
-                'zdispaches', 'zltop', 'znewb', 
-                'zonews', 'zopelabs', 'zoproducts',
-                ]
+            'cmsinfo', 'freshmeat', 'oscom',
+            'pypi', 'pyware', 'slashdot',
+            'zdispaches', 'zltop', 'znewb',
+            'zonews', 'zopelabs', 'zoproducts',
+        ]
         self.assertEquals(terms, rss_terms)
 
 
@@ -29,4 +31,3 @@ def test_suite():
     suite = TestSuite()
     suite.addTest(makeSuite(TestVocabularies))
     return suite
-
