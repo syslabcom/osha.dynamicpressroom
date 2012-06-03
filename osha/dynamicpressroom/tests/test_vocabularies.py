@@ -41,7 +41,7 @@ class TestVocabularies(unittest.TestCase):
 
 
 def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestVocabularies))
-    return suite
+    """This sets up a test suite that actually runs the tests in
+    the class(es) above.
+    """
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
