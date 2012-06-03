@@ -19,10 +19,10 @@ How it works (Doc Tests):
 We create the global PressRoom from which our sattelite pressrooms will pull
 data and present it in their own contexts.
 
-    >>> self.loginAsPortalOwner()
-    >>> self.folder.invokeFactory('PressRoom', 'global-press')
+    >>> folder = layer['portal'].folder
+    >>> folder.invokeFactory('PressRoom', 'global-press')
     'global-press'
-    >>> global_press = self.folder._getOb('global-press')
+    >>> global_press = folder._getOb('global-press')
 
 Lets see what was created automatically inside our shiny new pressroom:
 
@@ -67,10 +67,10 @@ pressroom and display it within its own context:
 Usually this 'local' pressroom, will be located somewhere else in the site, so
 we create it inside a subfolder.
 
-    >>> self.folder.invokeFactory('Folder', 'local-folder')
+    >>> folder.invokeFactory('Folder', 'local-folder')
     'local-folder'
 
-    >>> local_folder = getattr(self.folder, 'local-folder')
+    >>> local_folder = getattr(folder, 'local-folder')
 
     >>> local_folder.invokeFactory('PressRoom', 'local-press')
     'local-press'
@@ -110,4 +110,3 @@ Now we set the the Press Contacts from the global pressroom:
     >>> field_pressContacts.set(local_press, [global_press_contact1, global_press_contact2])
     >>> field_pressContacts.get(local_press)
      [<PressContact at .../global-press-contact1>, <PressContact at .../global-press-contact2>]
-

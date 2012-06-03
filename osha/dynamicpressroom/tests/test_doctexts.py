@@ -1,39 +1,20 @@
-import unittest
-import interlude
-import zope.testing
+import doctest
+import unittest2 as unittest
 
-from zope.app.testing import setup
+from osha.dynamicpressroom.tests.base import FUNCTIONAL_TESTING
+from plone.testing import layered
 
-from Testing import ZopeTestCase as ztc
-
-from Products.PloneTestCase.layer import PloneSite
-
-from osha.dynamicpressroom.tests.base import ZentraliseTestCase
-
-
-class TestCase(ZentraliseTestCase):
-    class layer(PloneSite):
-        @classmethod
-        def setUp(test):
-            pass
-
-        @classmethod
-        def tearDown(test):
-            setup.placefulTearDown()
-
-optionflags = (zope.testing.doctest.REPORT_ONLY_FIRST_FAILURE |
-               zope.testing.doctest.ELLIPSIS |
-               zope.testing.doctest.NORMALIZE_WHITESPACE
-               )
+OPTIONFLAGS = (doctest.REPORT_ONLY_FIRST_FAILURE |
+               doctest.ELLIPSIS |
+               doctest.NORMALIZE_WHITESPACE)
 
 
 def test_suite():
-    return unittest.TestSuite((
-        ztc.FunctionalDocFileSuite(
-            'README.txt',
-            package='osha.dynamicpressroom',
-            test_class=TestCase,
-            globs=dict(interact=interlude.interact),
-            optionflags=optionflags
-            ),
-        ))
+    suite  = unittest.TestSuite()
+    suite.addTests([
+            layered(
+                doctest.DocFileSuite(
+                    "../README.txt", optionflags=OPTIONFLAGS),
+                layer=FUNCTIONAL_TESTING),
+            ])
+    return suite

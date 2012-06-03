@@ -28,17 +28,11 @@ setup(name='osha.dynamicpressroom',
       install_requires=[
           'setuptools',
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-
-      [distutils.setup_keywords]
-      paster_plugins = setuptools.dist:assert_string_list
-
-      [egg_info.writers]
-      paster_plugins.txt = setuptools.command.egg_info:write_arg
-
-      [z3c.autoinclude.plugin]
-      target = plone
-      """,
-      paster_plugins = ["ZopeSkel"],
+      extras_require={
+          'test': [
+              'plone.app.testing',
+              'mock',
+          ],
+      },
+      paster_plugins=["ZopeSkel"],
       )

@@ -1,21 +1,51 @@
-# base test case classes
-from Testing import ZopeTestCase as ztc
-from Products.PloneTestCase import PloneTestCase as ptc
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from plone.app.testing import login
+from plone.app.testing import FunctionalTesting
+from plone.app.testing import IntegrationTesting
+from plone.app.testing import PLONE_FIXTURE
+from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import applyProfile
+from plone.app.testing import quickInstallProduct
+from plone.testing import z2
 
-# These must install cleanly, ZopeTestCase will take care of the others
-ztc.installProduct('CMFSin')
-ztc.installProduct('PressRoom')
-ztc.installProduct('osha.dynamicpressroom')
 
-# Set up the Plone site used for the test fixture. The PRODUCTS are the products
-# to install in the Plone site (as opposed to the products defined above, which
-# are all products available to Zope in the test fixture)
-PRODUCTS = ['osha.dynamicpressroom']
+class OshaDynamicPressRoom(PloneSandboxLayer):
 
-ptc.setupPloneSite(products=PRODUCTS)
+    defaultBases = (PLONE_FIXTURE,)
 
-class ZentraliseTestCase(ptc.PloneTestCase):
-    """Base class for integration tests. This may
-    provide specific set-up and tear-down operations, or provide convenience
-    methods.
-    """
+    def setUpZope(self, app, configurationContext):
+        #z2.installProduct(app, 'Products.CMFSin')
+        z2.installProduct(app, 'Products.PressRoom')
+        z2.installProduct(app, 'osha.dynamicpressroom')
+
+        import Products.PressRoom
+        self.loadZCML('configure.zcml', package=Products.PressRoom)
+
+        import osha.dynamicpressroom
+        self.loadZCML('configure.zcml', package=osha.dynamicpressroom)
+
+    def setUpPloneSite(self, portal):
+        #quickInstallProduct(portal, 'Products.CMFSin')
+        quickInstallProduct(portal, 'Products.PressRoom')
+        applyProfile(portal, 'osha.dynamicpressroom:default')
+
+        # Login as manager and create a test folder
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        login(portal, TEST_USER_NAME)
+        portal.invokeFactory('Folder', 'folder')
+
+    def tearDownZope(self, app):
+        #z2.uninstallProduct(app, 'Products.CMFSin')
+        z2.uninstallProduct(app, 'Products.PressRoom')
+        z2.uninstallProduct(app, 'osha.dynamicpressroom')
+
+
+OSHA_DYNAMICPRESSROOM_FIXTURE = OshaDynamicPressRoom()
+INTEGRATION_TESTING = IntegrationTesting(
+    bases=(OSHA_DYNAMICPRESSROOM_FIXTURE,),
+    name="OshaDynamicPressRoom:Integration")
+FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(OSHA_DYNAMICPRESSROOM_FIXTURE,),
+    name="OshaDynamicPressRoom:Functional")
