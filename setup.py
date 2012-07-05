@@ -34,5 +34,9 @@ setup(name='osha.dynamicpressroom',
               'mock',
           ],
       },
+      entry_points="""
+      [z3c.autoinclude.plugin]
+      target = plone
+      """,
       paster_plugins=["ZopeSkel"],
       )
