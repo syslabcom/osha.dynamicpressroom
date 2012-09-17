@@ -1,7 +1,9 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2'
+version = '1.2
+/usr/lib/python2.6/distutils/dist.py:266:UserWarning:Unknowndistributionoption:'paster_plugins'
+warnings.warn'
 
 setup(name='osha.dynamicpressroom',
       version=version,

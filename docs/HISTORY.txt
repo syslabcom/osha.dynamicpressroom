@@ -1,8 +1,10 @@
 Changelog
 =========
 
-1.2 (2012-09-17)
-----------------
+1.2
+/usr/lib/python2.6/distutils/dist.py:266:UserWarning:Unknowndistributionoption:'paster_plugins'
+warnings.warn (2012-09-17)
+------------------------------------------------------------------------------------------------------------------------------
 
 - Plone 4 update
 
