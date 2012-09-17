@@ -1,9 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.2
-/usr/lib/python2.6/distutils/dist.py:266:UserWarning:Unknowndistributionoption:'paster_plugins'
-warnings.warn'
+version = '1.2'
 
 setup(name='osha.dynamicpressroom',
       version=version,
@@ -40,5 +38,4 @@ setup(name='osha.dynamicpressroom',
       [z3c.autoinclude.plugin]
       target = plone
       """,
-      paster_plugins=["ZopeSkel"],
       )
