@@ -1,10 +1,10 @@
 Changelog
 =========
 
-1.2 (unreleased)
+1.2 (2012-09-17)
 ----------------
 
-- Nothing changed yet.
+- Plone 4 update
 
 
 1.1 - (2009-12-07)
